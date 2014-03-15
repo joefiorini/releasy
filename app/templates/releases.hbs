@@ -1,7 +1,15 @@
-<ul>
-{{#each controller}}
-  <li>{{link-to name "releases.show" this}}</li>
-{{/each}}
-</ul>
+<div class="row">
 
-{{outlet}}
+  <div class="large-4 columns">
+    <ul class="side-nav">
+    {{#each controller}}
+      <li>{{link-to name "releases.show" this}}</li>
+    {{/each}}
+    </ul>
+  </div>
+
+  <div class="large-8 columns">
+    {{outlet}}
+  </div>
+
+</div>
