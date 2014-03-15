@@ -7,7 +7,10 @@
     "ember": "1.5.0-beta.4",
     "ember-data": "1.0.0-beta.7",
     "ember-resolver": "git://github.com/stefanpenner/ember-jj-abrams-resolver.git#master",
-    "ic-ajax": "~0.3.0",
+    "ic-ajax": "~1.0.1",
     "ember-testing-httpRespond": "~0.1.2"
+  },
+  "resolutions": {
+    "jquery": ">= 2.1.0"
   }
 }

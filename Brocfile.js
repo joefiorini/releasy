@@ -67,7 +67,8 @@ module.exports = function (broccoli) {
       'handlebars.js',
       'ember.js',
       'ember-data.js',
-      'ember-resolver.js'
+      'ember-resolver.js',
+      'ic-ajax/main.js'
     ],
 
     wrapInEval: env !== 'production',
