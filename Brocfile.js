@@ -21,6 +21,7 @@ module.exports = function (broccoli) {
   var tests = broccoli.makeTree('tests');
   var publicFiles = broccoli.makeTree('public');
   var vendor = broccoli.makeTree('vendor');
+  var config = broccoli.makeTree('config');
 
   app = pickFiles(app, {
     srcDir: '/',
@@ -41,8 +42,15 @@ module.exports = function (broccoli) {
 
   tests = preprocess(tests);
 
+  config = pickFiles(config, {
+    srcDir: '/',
+    files: ['environment.js', 'environments/' + env + '.js'],
+    destDir: 'releasy/config'
+  });
+
   var sourceTrees = [
     app,
+    config,
     vendor
   ];
 
@@ -63,9 +71,11 @@ module.exports = function (broccoli) {
       'releasy/**/*.js'
     ],
     legacyFilesToAppend: [
+      'releasy/config/environment.js',
+      'releasy/config/environments/' + env + '.js',
       'jquery.js',
       'handlebars.js',
-      'ember.js',
+      'ember-canary/index.js',
       'ember-data.js',
       'ember-resolver.js',
       'ic-ajax/main.js'

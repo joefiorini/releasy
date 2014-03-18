@@ -1,3 +1,21 @@
-<h2 id='title'>Releasy</h2>
+<nav class="top-bar">
+  <ul class="title-area">
+    <li class="name">
+      <h1>{{link-to "Releasy" "index"}}</h1>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">
+    <ul class="right">
+      <li>
+        {{#if isSignedIn}}
+          <a href="#" {{action signOut}}>Sign Out</a>
+        {{else}}
+          {{link-to "Sign in with Github" "auth"}}
+        {{/if}}
+      </li>
+    </ul>
+  </section>
+</nav>
 
 {{outlet}}

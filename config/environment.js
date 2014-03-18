@@ -7,4 +7,14 @@
 //
 // window.ENV = {FEATURES: {'with-controller': true}};
 
-window.ENV = {};
+window.ENV = {
+  FEATURES: {
+    'query-params-new': true
+  }
+};
+
+window.config = {
+  github: {
+    clientId: 'f436c5f975e828f4882e'
+  }
+};
