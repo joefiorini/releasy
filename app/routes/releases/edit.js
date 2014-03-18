@@ -19,9 +19,6 @@ export default Ember.Route.extend({
       ajax({
         url: 'https://api.github.com/repos/' + this.get("owner") + "/" + this.get("repo") + "/releases/" + model.id,
         type: 'patch',
-        headers: {
-          Authorization: 'token ' + this.controllerFor('application').get('accessToken')
-        },
         data: JSON.stringify({
           tag_name: model.tag_name,
           target_committish: model.target_committish,

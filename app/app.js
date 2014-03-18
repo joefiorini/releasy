@@ -1,4 +1,5 @@
 import Resolver from 'ember/resolver';
+import 'releasy/initializers/auth-header';
 
 var App = Ember.Application.extend({
   LOG_ACTIVE_GENERATION: true,
