@@ -1,5 +1,6 @@
 /* global require, module */
-var filterTemplates = require('broccoli-template');
+'use strict';
+
 var uglifyJavaScript = require('broccoli-uglify-js');
 var compileES6 = require('broccoli-es6-concatenator');
 var p = require('ember-cli/lib/preprocessors');
@@ -67,7 +68,7 @@ module.exports = function (broccoli) {
       'releasy/config/environments/' + env + '.js',
       'jquery.js',
       'handlebars.js',
-      'ember-canary/index.js',
+      'ember.js',
       'ic-ajax/main.js',
       'ember-data.js',
       'ember-resolver.js'
