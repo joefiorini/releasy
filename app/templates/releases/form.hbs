@@ -1,43 +1,73 @@
-<div class="row">
-  <div class="large-12 columns">
-    {{input type="text" value=name}}
-  </div>
-</div>
+{{#with model controller='release'}}
 
 <div class="row">
-  <div class="large-12 columns">
-    {{textarea value=body style="height:250px"}}
-  </div>
-</div>
 
-<div class="row">
-  <div class="small-12 large-6 columns">
-    {{view Ember.Select content=tagNames value=tag_name}}
-  </div>
-</div>
+  <div class="large-7 columns">
+    <div class="row">
+      <div class="large-12 columns">
+        {{input type="text" value=name}}
+      </div>
+    </div>
 
-<div class="row">
-  <div class="small-12 large-6 columns">
-    {{input type="checkbox" id="prerelease" checked=prerelease}}
-    <label for="prerelease">This is a pre-release</label>
-  </div>
-</div>
+    <div class="row">
+      <div class="large-12 columns">
+        {{textarea value=body style="height:250px"}}
+      </div>
+    </div>
 
-<div class="row">
-  <div class="large-12 columns">
-    <ul class="button-group">
-      <li>
-    {{#if isNew}}
-      <button class="button small success" {{action "publish"}}>Publish Release</button>
+    <div class="row">
+      <div class="small-12 large-6 columns">
+        {{view Ember.Select
+          content=releases.allTags
+          value=tag_name
+          optionValuePath='content.name'
+          optionLabelPath='content.name'}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 large-6 columns">
+        {{input type="checkbox" id="prerelease" checked=prerelease}}
+        <label for="prerelease">This is a pre-release</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <ul class="button-group">
+          <li>
+        {{#if isNew}}
+          <button class="button small success" {{action "publish"}}>Publish Release</button>
+        {{else}}
+          <button class="button small success" {{action "save"}}>Update Release</button>
+        {{/if}}
+          </li>
+          <li>
+            <button class="button small" {{action "draft"}}>Save Draft</button>
+          </li>
+        </ul>
+      </div>
+      <div class="large-3 columns">
+      </div>
+    </div>
+  </div>
+
+  <div class="large-5 columns end">
+    {{#if loadingCommits}}
+      <p>Loading commits for this release...</p>
     {{else}}
-      <button class="button small success" {{action "save"}}>Update Release</button>
+      {{#if commitsError}}
+        <p>Could not load commits for this release</p>
+      {{else}}
+        <p><code>{{tag_name}}...{{previousRelease.tag_name}}</code></p>
+        <ul>
+        {{#each commits}}
+          <li>{{commit.message}}</li>
+        {{/each}}
+        </ul>
+      {{/if}}
     {{/if}}
-      </li>
-      <li>
-        <button class="button small" {{action "draft"}}>Save Draft</button>
-      </li>
-    </ul>
-  </div>
-  <div class="large-3 columns">
   </div>
 </div>
+
+{{/with}}

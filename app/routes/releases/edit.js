@@ -2,14 +2,9 @@ import {ghAjax} from 'releasy/utils/ajax';
 
 export default Ember.Route.extend({
   model: function(params, transition) {
-    var owner = transition.params.releases.owner,
-        repo = transition.params.releases.repo;
-    this.set("owner", owner);
-    this.set("repo", repo);
-    var url = 'https://api.github.com/repos/' + owner + '/' + repo + '/releases' + '/' + params.release_id;
     return ghAjax('releases', null, {
-      owner: owner,
-      repo: repo,
+      owner: this.get('currentRepo.owner'),
+      repo: this.get('currentRepo.name'),
       id: params.release_id
     });
   },

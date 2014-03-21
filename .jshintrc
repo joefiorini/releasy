@@ -9,6 +9,7 @@
     "DS": true,
     "$": true
   },
+  "quotmark": true,
   "node" : false,
   "browser" : false,
   "boss" : true,
