@@ -1,5 +1,6 @@
 export default Ember.ObjectController.extend({
-  tagNames: Ember.computed.mapBy("allTags", "name"),
+  needs: ['releases'],
+  tagNames: Ember.computed.mapBy("controllers.releases.allTags", "name"),
   actions: {
     publish: function() {
       this.set("draft", false);

@@ -10,14 +10,6 @@ export default Ember.Route.extend({
       isNew: true
     });
   },
-  afterModel: function(model) {
-    return ghAjax('tags', null, {
-      repo: this.get('repo'),
-      owner: this.get('owner')
-    }).then(function(tags) {
-      model.set('allTags', tags);
-    });
-  },
   actions: {
     save: function() {
       var model = this.currentModel;

@@ -16,11 +16,14 @@ export default Ember.Route.extend({
   actions: {
     save: function() {
       var model = this.currentModel;
+      var _this = this;
 
       ghAjax('releases', model, {
         owner: this.get('owner'),
         repo: this.get('repo'),
         id: model.id
+      }).then(function(release) {
+        _this.transitionTo('releases.show', release);
       });
     }
   }
