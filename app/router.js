@@ -8,6 +8,7 @@ Router.map(function() {
   this.route('callback');
 
   this.resource('releases', {path: '/:owner/:repo/releases'}, function() {
+    this.route('new');
     this.route('show', {path: '/:release_id'});
     this.route('edit', {path: '/:release_id/edit'});
   });

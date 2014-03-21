@@ -27,8 +27,10 @@ export function ghAjax(resource, data, options) {
     type = options.type;
   }
 
-  if(data) {
+  if(data && options.id) {
     type = 'patch';
+  } else if(data) {
+    type = 'post';
   }
 
   var ajaxOptions = {

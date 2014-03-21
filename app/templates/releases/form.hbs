@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="large-12 columns">
+    {{input type="text" value=name}}
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    {{textarea value=body style="height:250px"}}
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 large-6 columns">
+    {{view Ember.Select content=tagNames value=tag_name}}
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 large-6 columns">
+    {{input type="checkbox" id="prerelease" checked=prerelease}}
+    <label for="prerelease">This is a pre-release</label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <ul class="button-group">
+      <li>
+    {{#if isNew}}
+      <button class="button small success" {{action "publish"}}>Publish Release</button>
+    {{else}}
+      <button class="button small success" {{action "save"}}>Update Release</button>
+    {{/if}}
+      </li>
+      <li>
+        <button class="button small" {{action "draft"}}>Save Draft</button>
+      </li>
+    </ul>
+  </div>
+  <div class="large-3 columns">
+  </div>
+</div>
