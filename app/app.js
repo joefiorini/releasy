@@ -1,5 +1,6 @@
 import Resolver from 'ember/resolver';
 import 'releasy/initializers/auth-header';
+import CurrentRepo from 'releasy/initializers/current-repo';
 
 var App = Ember.Application.extend({
   LOG_ACTIVE_GENERATION: true,
@@ -10,5 +11,7 @@ var App = Ember.Application.extend({
   modulePrefix: 'releasy', // TODO: loaded via config
   Resolver: Resolver['default']
 });
+
+App.initializer(CurrentRepo);
 
 export default App;

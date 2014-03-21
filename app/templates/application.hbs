@@ -6,6 +6,16 @@
   </ul>
 
   <section class="top-bar-section">
+    <ul class="left">
+      <li class="divider"></li>
+      <li>
+        {{#if currentRepo.name}}
+          {{#link-to 'releases' currentRepo.owner currentRepo.name}}
+          {{currentRepo.owner}}/{{currentRepo.name}}
+          {{/link-to}}
+        {{/if}}
+      </li>
+    </ul>
     <ul class="right">
       <li>
         {{#if isSignedIn}}

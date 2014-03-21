@@ -2,8 +2,9 @@ import {ghAjax} from 'releasy/utils/ajax';
 
 export default Ember.Route.extend({
   model: function(params) {
-    this.set('owner', params.owner);
-    this.set('repo', params.repo);
+    this.set('currentRepo.name', params.repo)
+        .set('currentRepo.owner', params.owner);
+
     return ghAjax('releases', null, {
       owner: params.owner,
       repo: params.repo
@@ -11,8 +12,8 @@ export default Ember.Route.extend({
   },
   afterModel: function(model) {
     return ghAjax('tags', null, {
-      repo: this.get('repo'),
-      owner: this.get('owner')
+      repo: this.get('currentRepo.name'),
+      owner: this.get('currentRepo.owner')
     }).then(function(tags) {
       model.set('allTags', tags);
     });

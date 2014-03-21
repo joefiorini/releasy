@@ -19,8 +19,8 @@ export default Ember.Route.extend({
       var _this = this;
 
       ghAjax('releases', model, {
-        owner: this.get('owner'),
-        repo: this.get('repo'),
+        owner: this.get('currentRepo.owner'),
+        repo: this.get('currentRepo.name'),
         id: model.id
       }).then(function(release) {
         _this.transitionTo('releases.show', release);
