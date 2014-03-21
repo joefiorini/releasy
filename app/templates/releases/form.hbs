@@ -59,10 +59,19 @@
       {{#if commitsError}}
         <p>Could not load commits for this release</p>
       {{else}}
-        <p><code>{{tag_name}}...{{previousRelease.tag_name}}</code></p>
-        <ul>
+        <p class="commits-list__title"><code>{{tag_name}}...{{previousRelease.tag_name}}</code></p>
+        <ul class="commits-list">
         {{#each commits}}
-          <li>{{commit.message}}</li>
+          <li>
+            <dl>
+              <dt class="commits-list__label">
+                <code>
+                  <a {{bind-attr href=html_url}}>{{first-six sha}}</a>
+                </code>
+              </dt>
+              <dd class="commits-list__message">{{commit.message}}</dd>
+            </dl>
+          </li>
         {{/each}}
         </ul>
       {{/if}}

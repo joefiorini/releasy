@@ -1,0 +1,19 @@
+.commits-list {
+  margin-top: 0;
+  padding-left: 0;
+  margin-left: 0;
+  list-style: none;
+}
+
+.commits-list__label {
+  margin-bottom: 0;
+  font-size: rem-calc(12);
+}
+
+.commits-list__message {
+  display: inline-block
+}
+
+.commits-list__title {
+  margin-bottom: 0.5rem;
+}
