@@ -1,11 +1,9 @@
 export default Ember.ArrayController.extend({
   itemController: 'release',
-  sortFunction: function(a, b) {
-    return new Date(a.published_at) < new Date(b.published_at) ? -1 : 1;
-  },
+  sortProperties: ['created_at'],
   sortAscending: false,
   latest: function() {
-    return this.sortBy('published_at').get('lastObject');
+    return this.get('firstObject');
   }.property('@each.published_at'),
   nextTag: function() {
     return this.get('unreleasedTags.firstObject');

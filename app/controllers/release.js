@@ -9,7 +9,7 @@ export default Ember.ObjectController.extend({
       return this.get('releases.latest');
     } else {
       var originalRelease = this.get('releases').findBy('tag_name', this.get('tag_name'));
-      var index = this.get('releases.model').indexOf(originalRelease.get('model'));
+      var index = this.get('releases.arrangedContent').indexOf(originalRelease.get('model'));
       if(index === -1) { return; }
       return this.get('releases').objectAt(index + 1);
     }
