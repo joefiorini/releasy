@@ -1,5 +1,6 @@
 @import "settings";
-@import "foundation/scss/foundation";
+@import "vendor/foundation/scss/normalize";
+@import "vendor/foundation/scss/foundation";
 @import "commits-list";
 
 textarea {

@@ -1,95 +1,20 @@
 /* global require, module */
-'use strict';
 
-var uglifyJavaScript = require('broccoli-uglify-js');
-var compileES6 = require('broccoli-es6-concatenator');
-var p = require('ember-cli/lib/preprocessors');
-var pickFiles = require('broccoli-static-compiler');
-var env = require('broccoli-env').getEnv();
+var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
-var preprocessCss = p.preprocessCss;
-var preprocessTemplates = p.preprocessTemplates;
-var preprocessJs = p.preprocessJs;
+var app = new EmberApp();
 
-module.exports = function (broccoli) {
-  var app = broccoli.makeTree('app');
-  var tests = broccoli.makeTree('tests');
-  var publicFiles = broccoli.makeTree('public');
-  var vendor = broccoli.makeTree('vendor');
-  var config = broccoli.makeTree('config');
-  var styles;
+// Use `app.import` to add additional libraries to the generated
+// output files.
+//
+// If you need to use different assets in different
+// environments, specify an object as the first parameter. That
+// object's keys should be the environment name and the values
+// should be the asset to use in that environment.
+//
+// If the library that you are including contains AMD or ES6
+// modules that you would like to import into your application
+// please specify an object with the list of modules as keys
+// along with the exports of each module as its value.
 
-  app = pickFiles(app, {
-    srcDir: '/',
-    destDir: 'releasy/'
-  });
-
-  app = preprocessTemplates(app);
-
-  config = pickFiles(config, {
-    srcDir: '/',
-    files: ['environment.*', 'environments/' + env + '.*'],
-    destDir: 'releasy/config'
-  });
-
-  tests = pickFiles(tests, {
-    srcDir: '/',
-    destDir: 'releasy/tests'
-  });
-
-  tests = preprocessTemplates(tests);
-
-  var sourceTrees = [
-    app,
-    config,
-    vendor
-  ];
-
-  if (env !== 'production') {
-    //sourceTrees.push(tests);
-  }
-
-  sourceTrees = sourceTrees.concat(broccoli.bowerTrees());
-
-  var appAndDependencies = new broccoli.MergedTree(sourceTrees);
-
-  appAndDependencies = preprocessJs(appAndDependencies, '/', 'emblem-app');
-
-  var applicationJs = compileES6(appAndDependencies, {
-    loaderFile: 'loader.js',
-    ignoredModules: [
-      'ember/resolver'
-    ],
-    inputFiles: [
-      'releasy/**/*.js'
-    ],
-    legacyFilesToAppend: [
-      'releasy/config/environment.js',
-      'releasy/config/environments/' + env + '.js',
-      'jquery.js',
-      'handlebars.js',
-      'ember.js',
-      'ic-ajax/main.js',
-      'ember-data.js',
-      'ember-resolver.js'
-    ],
-
-    wrapInEval: env !== 'production',
-    outputFile: '/assets/app.js'
-  });
-
-  styles = preprocessCss(sourceTrees, 'releasy/styles', '/assets');
-
-  if (env === 'production') {
-    applicationJs = uglifyJavaScript(applicationJs, {
-      mangle: false,
-      compress: false
-    });
-  }
-
-  return [
-    applicationJs,
-    publicFiles,
-    styles
-  ];
-};
+module.exports = app.toTree();

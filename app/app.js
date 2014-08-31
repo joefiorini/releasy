@@ -1,17 +1,14 @@
+import Ember from 'ember';
 import Resolver from 'ember/resolver';
-import 'releasy/initializers/auth-header';
-import CurrentRepo from 'releasy/initializers/current-repo';
+import loadInitializers from 'ember/load-initializers';
+
+Ember.MODEL_FACTORY_INJECTIONS = true;
 
 var App = Ember.Application.extend({
-  LOG_ACTIVE_GENERATION: true,
-  LOG_MODULE_RESOLVER: true,
-  // LOG_TRANSITIONS: true,
-  // LOG_TRANSITIONS_INTERNAL: true,
-  LOG_VIEW_LOOKUPS: true,
   modulePrefix: 'releasy', // TODO: loaded via config
-  Resolver: Resolver['default']
+  Resolver: Resolver
 });
 
-App.initializer(CurrentRepo);
+loadInitializers(App, 'releasy');
 
 export default App;

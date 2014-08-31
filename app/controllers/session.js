@@ -1,6 +1,6 @@
 export default Ember.Controller.extend({
   signIn: function() {
-    var clientId = config.github.clientId;
+    var clientId = ENV.github.clientId;
     var params = [["client_id", clientId], ["scope", ["repo", "read:org"].join(",")], ["state", "abcd1234"]];
 
     var query = params.map(function(pair) {

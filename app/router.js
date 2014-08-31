@@ -1,6 +1,8 @@
+import Ember from 'ember';
+
 var Router = Ember.Router.extend({
-  location: 'auto'
-}); // ensure we don't share routes between all Router instances
+  location: ReleasyENV.locationType
+});
 
 Router.map(function() {
 

@@ -1,6 +1,7 @@
-/* global ic */
+import ajax from "ic-ajax";
+
 function ajax(){
-  return ic.ajax.apply(null, arguments);
+  return ajax.apply(null, arguments);
 }
 
 export default ajax;
@@ -40,4 +41,4 @@ export function ghAjax(resource, data, options) {
   };
 
   return ajax(ajaxOptions);
-};
+}
